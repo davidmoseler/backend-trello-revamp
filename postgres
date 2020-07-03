@@ -1,0 +1,6 @@
+sudo su postgres
+psql
+create database trello_revamp;
+create role trello;
+alter role trello password 'trello';
+grant all privileges on database trello_revamp to trello;
