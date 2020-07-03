@@ -45,29 +45,6 @@ def create_list_grid():
     db.session.commit()
     return {'list_grid': list_grid.id}
 
-@app.route('/list_grid', methods=['POST'])
-def create_list_grid():
-    json = request.json
-    list_grid = ListGrid()
-    db.session.add(list_grid)
-    for i, list_ in enumerate(json):
-        cards = list_['cards']
-        list_ = List(
-                list_grid = list_grid,
-                position = i,
-                title = list_['title']
-                )
-        db.session.add(list_)
-        for i, card in enumerate(cards):
-            card = Card(
-                    text = card['text'],
-                    list = list_,
-                    position = i
-                    )
-            db.session.add(card)
-    db.session.commit()
-    return {'list_grid': list_grid.id}
-
 @app.route('/list_grid/<id>', methods=['PUT'])
 def update_list_grid(id):
     json = request.json
